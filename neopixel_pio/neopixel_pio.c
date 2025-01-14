@@ -74,9 +74,9 @@ void npClear() {
 void npWrite() {
   // Escreve cada dado de 8-bits dos pixels em sequência no buffer da máquina PIO.
   for (uint i = 0; i < LED_COUNT; ++i) {
-    pio_sm_put_blocking(np_pio, sm, leds[i].G);
-    pio_sm_put_blocking(np_pio, sm, leds[i].R);
-    pio_sm_put_blocking(np_pio, sm, leds[i].B);
+    pio_sm_put_blocking(np_pio, sm, leds[i].G<<24);
+    pio_sm_put_blocking(np_pio, sm, leds[i].R<<24);
+    pio_sm_put_blocking(np_pio, sm, leds[i].B<<24);
   }
   sleep_us(100); // Espera 100us, sinal de RESET do datasheet.
 }
