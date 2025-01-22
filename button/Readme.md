@@ -40,7 +40,7 @@ O processamento é definido por:
 
 Para definir o passo a passo do pseudocódigo, fazemos uso de um fluxograma.
 
-![Fluxograma](images/button-fluxograma.png)
+![Fluxograma](images/button-fluxograma.jpg)
 Figura: Fluxograma do código para fazer o botão controlar o estado do LED RGB. OBS: Editado no Drawio.
 
 A partir deste fluxograma, podemos destacar e detalhar as etapas principais no pseudocódigo. O fluxograma parte do Início, inclui bibliotecas e configura entrada (botão) e saída (LED). Observe que neste fluxograma há uma condição dentro de um loop. Esta condição estabelece o caminho dentro do fluxograma.
