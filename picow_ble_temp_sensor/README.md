@@ -4,6 +4,18 @@ Este projeto é um exemplo educacional de como utilizar o Raspberry Pi Pico W pa
 
 O objetivo deste projeto é ensinar aos estudantes como configurar e programar o Raspberry Pi Pico W para ler dados do sensor de temperatura integrado e transmiti-los via BLE para um dispositivo receptor.
 
+## Fatos importantes sobre Bluetooth Low Energy (BLE)
+
+- Foca no baixo consumo de energia e dispositivos alimentados por bateria
+- Opera na banda ISM de 2.4 GHz
+- Alcance: Pode operar a partir de alguns metros ate 1 Km (utilizando o método de recuperação de dados FEC), configurável
+- Consumo de energia: Reduzido, o rádio fica desligado e basicamente é ligado apenas para transmitir e receber dados. De modo geral, a bateria pode durar meses
+- BLE vs Bluetooth clássico:
+  - Dispositivos BLE e BT clássicos não são compatíveis
+  - BLE é projetado para transferências de dados em rajadas e de baixa largura de banda
+  - A maioria dos novos recursos e atualizações na especificação desde 2010 são direcionados ao BLE
+- [Mais informações](https://www.bluetooth.com/learn-about-bluetooth/tech-overview/)
+
 ## Materiais Necessários
 
 - Raspberry Pi Pico W (2 unidades, se desejar usar uma como receptor)
