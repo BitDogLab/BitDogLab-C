@@ -18,6 +18,8 @@
 volatile int counter = 0;
 volatile int click_count = 0;
 volatile bool counting = false;
+volatile bool start_requested = false;
+volatile bool update_requested = false;
 
 // Buffer para o display OLED
 uint8_t ssd[ssd1306_buffer_length];
@@ -70,8 +72,18 @@ int main() {
     ssd1306_show();
     
     while (1) {
-        tight_loop_contents();
+        if (start_requested) {
+            start_requested = false;
+            counting = true;
+            start_countdown();
+        }
+        if (update_requested) {
+            update_requested = false;
+            update_display();
+        }
+        tight_loop_contents();  // ou outras tarefas
     }
+    
     return 0;
 }
 
@@ -79,16 +91,15 @@ void gpio_callback(uint gpio, uint32_t events) {
     if (gpio == BUTTON_A && !counting) {
         counter = 9;
         click_count = 0;
-        counting = true;
-        start_countdown();
+        start_requested = true;  // apenas sinaliza
     } else if (gpio == BUTTON_B && counting) {
         click_count++;
-        update_display();
+        update_requested = true;  // apenas sinaliza
     }
 }
 
 void start_countdown() {
-    while (counting && counter >= 0) {
+    while (counting && counter > 0) {
         update_display();
         sleep_ms(1000);
         counter--;
