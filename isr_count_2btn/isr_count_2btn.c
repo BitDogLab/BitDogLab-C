@@ -68,8 +68,9 @@ int main() {
         start_page : 0,
         end_page : ssd1306_n_pages - 1
     };
+    calculate_render_area_buffer_length(&frame_area);
     ssd1306_clear();
-    ssd1306_show();
+    // ssd1306_show();
     
     while (1) {
         if (start_requested) {
@@ -113,11 +114,11 @@ void update_display() {
     ssd1306_clear();
     
     sprintf(buffer, "Contador: %d", counter);
-    printf("%s\n", buffer);
+    // printf("%s\n", buffer);
     ssd1306_draw_string(ssd, 0, 0, buffer);
     
     sprintf(buffer, "Clicks: %d", click_count);
-    printf("%s\n", buffer);
+    // printf("%s\n", buffer);
     ssd1306_draw_string(ssd, 0, 16, buffer);
     
     ssd1306_show();
