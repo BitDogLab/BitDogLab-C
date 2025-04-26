@@ -36,8 +36,8 @@ struct render_area frame_area;
 
 int main() {
     stdio_init_all();
-    sleep_ms(2000); // Espera 2 segundos para estabilizar a USB
-    printf("Sistema iniciado...\n");
+    // sleep_ms(2000); // Espera 2 segundos para estabilizar a USB
+    // printf("Sistema iniciado...\n");
 
     // Inicializa botões
     gpio_init(BUTTON_A);

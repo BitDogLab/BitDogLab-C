@@ -33,7 +33,7 @@ int main() {
         printf("]  Y: [");
         for (uint i = 0; i < bar_width; ++i)
             putchar( i == bar_y_pos ? 'o' : ' ');
-        printf("]");
+        printf("]\n");
         sleep_ms(50);
 
     }

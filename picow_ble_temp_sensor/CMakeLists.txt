@@ -43,6 +43,11 @@ pico_sdk_init()
 add_executable(picow_ble_temp_sensor
     server.c server_common.c
     )
+
+# Modify the below lines to enable/disable output over UART/USB
+pico_enable_stdio_uart(picow_ble_temp_sensor 0)
+pico_enable_stdio_usb(picow_ble_temp_sensor 1)
+
 target_link_libraries(picow_ble_temp_sensor
     pico_stdlib
     pico_btstack_ble
