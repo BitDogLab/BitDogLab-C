@@ -20,7 +20,7 @@ void ws2818b_program_init(PIO pio, uint sm, uint offset, uint pin, float freq) {
   // Program configuration.
   pio_sm_config c = ws2818b_program_get_default_config(offset);
   sm_config_set_sideset_pins(&c, pin); // Uses sideset pins.
-  sm_config_set_out_shift(&c, true, true, 8); // 8 bit transfers, right-shift.
+  sm_config_set_out_shift(&c, false, true, 8); // 8 bit transfers, right-shift.
   sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX); // Use only TX FIFO.
   float prescaler = clock_get_hz(clk_sys) / (10.f * freq); // 10 cycles per transmission, freq is frequency of encoded bits.
   sm_config_set_clkdiv(&c, prescaler);
