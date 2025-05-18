@@ -50,13 +50,18 @@ pico_enable_stdio_usb(iot_security_lab 1)
 
 # Add the standard library to the build
 target_link_libraries(iot_security_lab
+        # Biblioteca padrão do Pico SDK, que fornece funções básicas para o RP2040 (GPIO, temporizadores, UART, etc.).
         pico_stdlib
+        # Oferece suporte Wi-Fi (CYW43) com LwIP (pilha TCP/IP) em um modo thread-safe em segundo plano.
         pico_cyw43_arch_lwip_threadsafe_background
+        # Adiciona suporte a cliente MQTT sobre o LwIP.
         pico_lwip_mqtt
+        # A pilha Lightweight IP (LwIP), que fornece funcionalidades TCP/IP (HTTP, MQTT, UDP, DHCP, etc.).
         pico_lwip
+        # O driver do chip Wi-Fi CYW43 (usado no Pico W).
         pico_cyw43_driver
-        pico_time
-        pico_unique_id
+        # pico_time
+        # pico_unique_id
         )
 
 # Add the standard include files to the build
