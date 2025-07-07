@@ -6,6 +6,8 @@ ao longo do Curso de Capacitação em Sistemas Embarcados - Embarcatech.
 
 Para usar o código abaixo, conecte o módulo SENSOR DE COR (SENS COR),
 usando um conector JST SH de 4 fios, ao port I2C 0 da BitDogLab.
+
+Os valores medidos e a cor reconhecida podem ser lidos via Serial Monitor.
 */
 
 // Bibliotecas inclusas
