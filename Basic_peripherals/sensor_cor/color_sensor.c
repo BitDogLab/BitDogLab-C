@@ -8,7 +8,6 @@ Para usar o código abaixo, conecte o módulo SENSOR DE COR (SENS COR),
 usando um conector JST SH de 4 fios, ao port I2C 0 da BitDogLab.
 */
 
-
 // Bibliotecas inclusas
 #include <stdio.h>
 #include "pico/stdlib.h"
