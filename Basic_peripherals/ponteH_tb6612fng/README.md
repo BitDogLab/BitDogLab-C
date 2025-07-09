@@ -14,18 +14,21 @@ Este diretório contém um driver simples para controlar motores DC usando a pon
 
    ```c
    #include "motor.h"
+   ```
 
 3. No início do programa, configure e habilite os motores:
 
    ```c
    motor_setup();      // Inicializa GPIOs e PWM
    motor_enable();     // Libera a ponte H para funcionamento
+   ```
     
 4. Para controlar os motores durante a execução:
 
    ```c
    // Define velocidade (0 até 65535) e direção (true=frente, false=tras)
    motor_set_both_level(20000, true);
+   ```
 
 ## Funções disponíveis
 
@@ -39,6 +42,7 @@ Este diretório contém um driver simples para controlar motores DC usando a pon
 | `motor_set_both_level(level, forward)`  | Define nível de PWM e direção para os dois motores |
 
 ## Exemplo básico
+
    ```c
    #include <stdio.h>
    #include "pico/stdlib.h"
@@ -53,11 +57,8 @@ Este diretório contém um driver simples para controlar motores DC usando a pon
        // Exemplo: comando de controle com valor negativo = girar para tras
        float control_signal = -0.30f * 255.0f;
 
-       // Exemplo: comando de controle com valor negativo = girar para tras
-       float control_signal = -0.30f * 255.0f; // valor de controle
-       
        bool forward = control_signal > 0; // obtem direcao
-       float magnitude = fabsf(control_signal); // obtem magnitude sem sinal
+       float magnitude = fabsf(control_signal); // obtem modulo do sinal
        float limitado = fminf(magnitude, 255.0f); // limita ao maximo de 255
        uint16_t level = (uint16_t)limitado << 8; // converte e ajusta escala
        
@@ -71,6 +72,7 @@ Este diretório contém um driver simples para controlar motores DC usando a pon
            tight_loop_contents(); // mantém o programa rodando
        }
    }
+   ```
 
 ## Observações
 
