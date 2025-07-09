@@ -1,6 +1,6 @@
 # Sensor Acelerômetro e Giroscópio 
 
-## Arquivos de driver para o módulo sensor acelerômetro e giroscópio MPU6050
+## Arquivos de driver para o módulos sensor acelerômetro e giroscópio
 
 Este diretório contém drivers em linguagem C para sensores acelerômetro e giroscópio usados com a BitDogLab. As subpastas contém arquivos .c e .h prontos para serem copiados para o projeto principal.
 

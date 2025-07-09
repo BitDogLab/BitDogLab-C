@@ -20,7 +20,7 @@
    mpu6050_reset();      // Reinicia o sensor
 
    int16_t accel[3], gyro[3], temp;
-   mpu6050_read_raw(accel, gyro, &temp);
+   mpu6050_read_raw(accel, gyro, &temp); // Faz a leitura e armazena nas variaveis
 
 ## Funções disponíveis
 
@@ -46,7 +46,7 @@ int main() {
     int16_t accel[3], gyro[3], temp;
 
     while (1) {
-        mpu6050_read_raw(accel, gyro, &temp);
+        mpu6050_read_raw(accel, gyro, &temp); // Armazena valores lidos nas variaveis
 
         printf("Accel X: %d, Y: %d, Z: %d\n", accel[0], accel[1], accel[2]);
         sleep_ms(1000); // espera 1 segundo
