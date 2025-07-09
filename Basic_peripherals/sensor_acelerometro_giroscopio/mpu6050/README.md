@@ -1,5 +1,7 @@
 # Driver MPU6050
 
+Driver adaptado de [raspberrypi pico-examples](https://github.com/raspberrypi/pico-examples/blob/master/i2c/mpu6050_i2c/mpu6050_i2c.c)
+
 ## Arquivos
 
 - `mpu6050_i2c.h` – Header com as declarações das funções
@@ -52,3 +54,22 @@ int main() {
         sleep_ms(1000); // espera 1 segundo
     }
 }
+```
+
+## Observacao
+
+Caso deseje usar o código disponível no repositório:
+https://github.com/raspberrypi/pico-examples/blob/master/i2c/mpu6050_i2c/mpu6050_i2c.c
+e também disponível no PDF p582-585
+https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-c-sdk.pdf
+
+Substituir a variável "i2c_default" pelas variáveis "i2c0" ou "i2c1".
+Substituir as variáveis  "PICO_DEFAULT_I2C_SDA_PIN" e "PICO_DEFAULT_I2C_SCL_PIN" por "0" e "1" (caso i2c0), ou por "2" e "3" (caso i2c1).
+
+Tabela resumo:
+| Interface  | Pino SDA  | Pino SCL  |
+|------------|-----------|-----------|
+| i2c0       | 0         | 1         |
+| i2c1       | 2         | 3         |
+
+Não esquecer de usar a opção "i2c0/i2c1" no código que corresponda ao conector físico onde conectou o sensor.
