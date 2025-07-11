@@ -1,5 +1,5 @@
 /*
-SENSOR DE BATIMENTOS CARDÍACOS E OXÍMETRO
+SENSOR DE RED E IR (MAX30102)
 
 O código abaixo foi desenvolvido com propósitos didáticos, para uso
 ao longo do Curso de Capacitação em Sistemas Embarcados - Embarcatech.
