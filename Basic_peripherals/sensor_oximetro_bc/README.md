@@ -8,5 +8,5 @@ Para usar os códigos, conecte o módulo MAX30102 (OXI BAT), usando um conector 
 
 Os valores de RED e IR medidos podem ser lidos via Serial Monitor.
 
-> [!Aviso]
+> [!Warning]
 > O código abaixo foi feito para operação com o módulo **MAX30102**. Portanto, pode não ser compatível com um módulo **MAX30101**.
