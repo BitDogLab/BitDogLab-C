@@ -6,7 +6,14 @@ Os códigos aqui incluídos foram desenvolvidos com propósitos didáticos, para
 
 Para usar os códigos, conecte o módulo MAX30102 (OXI BAT), usando um conector JST SH de 4 fios, ao port I2C 0 da BitDogLab.
 
-Os valores de RED e IR medidos podem ser lidos via Serial Monitor.
+Os valores medidos/processados podem ser lidos via Serial Monitor.
 
 > [!Warning]
-> O código abaixo foi feito para operação com o módulo **MAX30102**. Portanto, pode não ser compatível com um módulo **MAX30101**.
+> Os códigos desta pasta foram feitos para operação com o módulo **MAX30102**. Portanto, pode não ser compatível com um módulo **MAX30101**.
+
+### Os códigos:
+> `oxi_bat_sensor_raw.c`
+> Recebe os valores de IR e RED lidos pelo sensor e os exibe via Serial Monitor.
+
+> `oximeter_heart_rate.c`
+> Recebe os valores de IR e RED lidos pelo sensor, os processa em valores de SpO2 (em %) e BPM, e os exibe via Serial Monitor.
