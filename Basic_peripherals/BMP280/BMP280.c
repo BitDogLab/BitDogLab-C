@@ -8,37 +8,12 @@
 #define I2C_SCL_PIN 3
 #define I2C_ADDR 0x76
 
-void i2c_scan_bus() {
-    printf("Scanner I2C:\n");
-    for (int addr = 0; addr < 128; ++addr) {
-        uint8_t dummy = 0;
-        int ret = i2c_write_timeout_us(i2c1, addr, &dummy, 1, false, 1000);
-        if (ret >= 0) {
-            printf("Dispositivo encontrado no endereço 0x%02x\n", addr);
-        }
-    }
-}
-
-
-void config_i2c() {
-    i2c_init(i2c1, 100 * 1000);
-    gpio_set_function(I2C_SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(I2C_SCL_PIN, GPIO_FUNC_I2C);
-    gpio_pull_up(I2C_SDA_PIN);
-    gpio_pull_up(I2C_SCL_PIN);
-}
-
 int main() {
  
     stdio_init_all();
-    config_i2c();
     sleep_ms(5000);
 
-    while (true) {
-
-        i2c_scan_bus();
-    }
-/*    bmp280_init();
+    bmp280_init();
 
     while (true) {
         sensors_t s = bmp280_get_all(I2C_ADDR);
@@ -50,5 +25,4 @@ int main() {
     }
 
     return 0;
-*/
 }
