@@ -32,13 +32,19 @@ Os valores medidos e a cor reconhecida podem ser lidos via Serial Monitor.
 #define GDATAL 0x18
 #define BDATAL 0x1A
 
-// Definir o máximo entre dois inteiros (16 bits)
-// Função matemática usada no algoritmo de detecção de cor.
+/*
+--- FUNÇÃO DE MÁXIMO ---
+    Para definir o máximo entre dois inteiros (16 bits). Função
+    matemática usada no algoritmo de detecção de cor.
+*/
 uint16_t max (uint16_t a, uint16_t b) {
     return (a > b)?a:b;
 }
 
-// Função de inicialização e configuração geral do I2C
+/*
+--- CONFIGURAR I2C ---
+    Função de inicialização e configuração geral do I2C.
+*/
 void config_i2c() {
     i2c_init(i2c0, 100 * 1000);
     gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
@@ -47,13 +53,19 @@ void config_i2c() {
     gpio_pull_up(I2C_SCL);
 }
 
-// Função auxiliar para escrita no registrador
+/*
+--- ESCRITA DO SENSOR TCS ---
+    Função auxiliar para escrita (8 bits) no registrador do sensor.
+*/
 void tcs_write8(uint8_t reg, uint8_t value) {
     uint8_t buffer[2] = { COMMAND_BIT | reg, value };
     i2c_write_blocking(i2c0, TCS34725_ADDRESS, buffer, 2, false);
 }
 
-// Função auxiliar para leitura de 16 bits
+/*
+--- LEITURA DO SENSOR TCS ---
+    Função auxiliar para leitura (16 bits) do registrador do sensor.
+*/
 uint16_t tcs_read16(uint8_t reg) {
     uint8_t buffer[2];
     uint8_t command = COMMAND_BIT | reg;
@@ -62,29 +74,42 @@ uint16_t tcs_read16(uint8_t reg) {
     return (uint16_t)(buffer[1] << 8) | buffer[0];
 }
 
-// Inicializa o sensor com LED desligado
+/*
+--- INICIALIZAR SENSOR TCS ---
+    Inicializa o sensor com LED desligado.
+*/
 void tcs_init() {
     tcs_write8(ENABLE_REG, 0x00);         // Desativa tudo
     tcs_write8(ATIME_REG, 0xEB);          // Tempo de integração ~700ms
     tcs_write8(CONTROL_REG, 0x01);        // Ganho x4
 }
 
-// Liga o sensor e o LED interno
+/*
+--- HABILITAR SENSOR TCS ---
+    Liga o sensor e o LED interno.
+*/
 void tcs_enable() {
     tcs_write8(ENABLE_REG, 0x03);
 }
 
-// Desliga o sensor e o LED interno
+/*
+--- DESABILITAR SENSOR TCS ---
+    Desliga o sensor e o LED interno.
+*/
 void tcs_disable() {
     tcs_write8(ENABLE_REG, 0x00);
 }
 
-// ALGORITMO DE INTERPRETAÇÃO DE COR
-// A detecção de cor varia com parâmetros como a distância entre o
-// sensor e a amostra, tal como a saturação e a reflexividade da cor.
-// Para o algoritmo abaixo, realizei uma série de testes com algumas
-// camisetas coloridas.
-// Averiguei que o sensor funciona melhor para detectar cores vibrantes.
+/*
+--- ALGORITMO DE INTERPRETAÇÃO DE COR ---
+    A detecção de cor varia com parâmetros como a distância entre o
+    sensor e a amostra, tal como a saturação e a reflexividade da cor.
+    Para o algoritmo abaixo, realizei uma série de testes com algumas
+    camisetas coloridas.
+
+    OBS.: Como esperado, o sensor funciona melhor para detectar cores
+    vibrantes.
+*/
 const char* detect_color(uint16_t r, uint16_t g, uint16_t b) {
     if (max(max(r, g), b) == r) {   // Maior valor é VERMELHO
         return "Vermelho";
@@ -117,14 +142,15 @@ const char* detect_color(uint16_t r, uint16_t g, uint16_t b) {
     }
 }
 
-// Função principal
-int main()
-{
+/*
+--- FUNÇÃO PRINCIPAL ---
+*/
+int main() {
     stdio_init_all();       // Inicialização geral
     config_i2c();           // Configuração de I2C
 
-    sleep_ms(1000);
-    printf("Inicializando sensor de cor...\n");     // Startup message
+    sleep_ms(3000);
+    printf("Inicializando sensor de cor...\n");     // Mensagem de inicialização
 
     tcs_init();             // Inicialização do sensor de cor
     sleep_ms(50);
